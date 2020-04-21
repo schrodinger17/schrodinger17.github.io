@@ -22,12 +22,12 @@
     // complete configuration parameters
     search: {
       maxAge: 86400000, // Expiration time, the default one day
-      paths: [], // or 'auto'
+      paths: 'auto', // or 'auto'
       placeholder: 'Type to search',
 
       // Localization
       placeholder: {
-        '/zh-cn/': '搜索',
+        '/WPICTF-re-wp.md': 'Type to search',
         '/': 'Type to search'
       },
 
@@ -35,12 +35,12 @@
 
       // Localization
       noData: {
-        '/zh-cn/': '找不到结果',
+        '/WPICTF-re-wp.md': 'No Results',
         '/': 'No Results'
       },
 
       // Headline depth, 1 - 6
-      depth: 1,
+      depth: 6,
 
       hideOtherSidebarContent: true, // whether or not to hide other sidebar content
 
@@ -53,6 +53,7 @@
           errorText  : 'Error',
           successText: 'Copied'
         },
+      auto2top: true,
       loadNavbar: true,
       loadSidebar: true,
       subMaxLevel: 20,
