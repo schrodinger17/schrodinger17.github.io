@@ -123,7 +123,7 @@ int main()
 
 得到了含有flag的gif
 
-![flag](_images/WPICTF-re-wp/flag.gif)
+![flag](_images/2020-WPICTF/flag.gif)
 
 flag有点难读，第一遍还读错了一位
 
