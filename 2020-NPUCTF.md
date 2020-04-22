@@ -182,7 +182,7 @@ flag{j4r2eXe_I5_@_p0wer7ul_To0l!}
 
 
 
-#### Anti-IDA
+### Anti-IDA
 
 出题人给hint说不要用IDA，但我在这之前已经用IDA做完了……
 
