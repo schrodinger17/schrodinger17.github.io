@@ -28,7 +28,7 @@ If-Unmodified-Since:Fri, 01 Jan 2077 00:00:00 GMT
 
 再发送请求得到flag
 
-```flag
+```
 hgame{W0w!Your_heads_@re_s0_many!}
 ```
 
@@ -40,7 +40,7 @@ hgame{W0w!Your_heads_@re_s0_many!}
 
 一看题目又是一道迷宫题，拖进IDA反编译
 
-```c++
+```cpp
 v5 = (char *)&unk_6020C4;
   while ( (signed int)v4 < SHIDWORD(v4) )
   {
@@ -107,7 +107,7 @@ hgame{ssssddddddsssssddwwdddssssdssdd}
 
 首先发现是linux可执行文件，拖进IDA反编译，并且对每一部分的作用进行一个分析
 
-```c++
+```cpp
 //只贴出了有用的部分并且稍做了排版
 void __fastcall __noreturn main(__int64 a1, char **a2, char **a3)
 {
@@ -328,7 +328,7 @@ hgame{0f233e63637982d266cbf41ecb1b0102}
 
 windows可执行程序，打开发现还是让输入flag，然后验证正确与否，还是IDA反编译，发现所有的函数名字IDA都识别不了，根据程序打开的提示语，搜索所有字符串找到主函数入口，根据具体操作给部分函数和变量重新命名，大概了解其用途
 
-```c++
+```cpp
 int __cdecl main(int argc, const char **argv, const char **envp)
 {
   __int64 len; // rax
@@ -479,7 +479,7 @@ if __name__ == '__main__':
 
 输出的flag为：
 
-```flag
+```
 hgame{b45e6a_i5_50_eazy_6VVSQ}
 ```
 
@@ -487,7 +487,7 @@ hgame{b45e6a_i5_50_eazy_6VVSQ}
 
 这题函数实在是太多，而且应该是万恶的出题人故意把函数标识去掉了，理解起来简直窒息，但是逆向这个东西，七分理解三分猜，于是开猜
 
-```c++
+```cpp
  sub_140002AE0((__int64)&v13);                 // 大概是string类的构造函数
   sub_1400018D0(std::cin, &v13);                // cin>>v13
   v15 = "hgame{";
@@ -583,7 +583,7 @@ print(flag)
 
 提交提示成功，猜测正确
 
-```flag
+```
 hgame{-24840_-78193_51567_2556_-26463_26729_3608_-25933_25943}
 ```
 
@@ -595,7 +595,7 @@ hgame{-24840_-78193_51567_2556_-26463_26729_3608_-25933_25943}
 
 IDA反编译
 
-```c++
+```cpp
 int __cdecl main(int argc, const char **argv, const char **envp)
 {
   char s; // [esp+0h] [ebp-ACh]
@@ -767,7 +767,7 @@ hgame{W3LC0ME_TO_2020_HGAM3}
 
 unicode编码，解码得：
 
-```flag
+```
 hgame{Do_y0u_KnOW_uNiC0d3?}
 ```
 
@@ -811,7 +811,7 @@ hgame{3Nc0dInG_@lL_iN_0Ne!}
 脱壳的过程借鉴https://www.52pojie.cn/thread-1048649-1-1.html
 很少有人对ELF64文件加壳，教程也很少，直接使用里面的idc修改目录导出
 
-```c++
+```cpp
 #include <idc.idc>
 #define PT_LOAD              1
 
@@ -884,7 +884,7 @@ static dump(dumpfile,startimg,endimg,offset)
 
 尝试在虚拟机里面运行，发现可以运行，代表脱壳成功，反编译，通过提示语找到程序处理输入的部分
 
-```c++
+```cpp
 scanf((__int64)"%42s", v7);
   v5 = 0;
   for ( i = 0; i <= 41; ++i )
@@ -906,7 +906,7 @@ scanf((__int64)"%42s", v7);
 
 本题主要考验手动脱壳的技巧，对于加密部分并没有设置太多的难度，直接导出6CA0A0处的数组然后进行逆变换就得到了flag
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 using namespace std;

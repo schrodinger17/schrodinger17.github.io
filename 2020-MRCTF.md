@@ -6,7 +6,7 @@
 
 太简单了没什么好说的，直接上代码
 
-```c++
+```cpp
 #include<iostream>
 #include "ida.h"
 using namespace std;
@@ -151,7 +151,7 @@ print(flag)
 
 找到主函数
 
-```c++
+```cpp
 __int64 __fastcall main_main(__int64 a1, __int64 a2)
 {
   __int64 v2; // r8
@@ -247,7 +247,7 @@ flag{hello_world_gogogo}
 
 ~~然后发现简直乱七八糟~~
 
-```asm
+```asm6502
 .text:00401200 loc_401200:                             ; CODE XREF: sub_401390+1E↓p
 .text:00401200                 push    ebp
 .text:00401201                 mov     ebp, esp
@@ -283,7 +283,7 @@ flag{hello_world_gogogo}
 
 这段的意思实际上就是判断了一下字符串的长度为`0x2B`，然后进行了一个跳转，如果长度不为`0x2B`，跳转到结束部分，如果是，进行下一步的处理，然后发现下一步有个花指令
 
-```asm
+```asm6502
 loc_401251:                             ; CODE XREF: .text:00401248↑j
 .text:00401251                 call    sub_401275
 .text:00401256                 call    near ptr 2BFF088Eh
@@ -317,7 +317,7 @@ loc_401251:                             ; CODE XREF: .text:00401248↑j
 
 开始变得乱七八糟，看一下`call`的函数内容
 
-```asm
+```asm6502
 sub_401275      proc near               ; CODE XREF: .text:loc_401251↑p
 .text:00401275                 pop     eax
 .text:00401276                 add     eax, 1
@@ -328,7 +328,7 @@ sub_401275      proc near               ; CODE XREF: .text:loc_401251↑p
 
 这就是个典型的花指令，首先`call`一个函数，相当于`push eip+jmp`，这个时候栈顶是`eip`就是函数执行结束之后需要返回的地址，但是进入这个函数之后发现，这个函数的作用就是把栈顶的`old eip`弹出到`eax`，然后`+1`，再`push`到栈顶，这使得最后返回的时候跳过了`call`命令紧接着的那个字节，所以手动去一下花，真正的指令应该是
 
-```asm
+```asm6502
  xor     esi, esi
 .text:00401259                 mov     esi, 2Bh
 .text:0040125E
@@ -345,7 +345,7 @@ sub_401275      proc near               ; CODE XREF: .text:loc_401251↑p
 
 对于输入的字符每一个都和3异或得到了新的字符串，这里用的`al`取低八位实际上没有什么影响，因为输入的字符都在`0~255`之间，然后接下来还有一个跳转
 
-```asm
+```asm6502
 loc_40127B:                             ; CODE XREF: .text:00401273↑j
 .text:0040127B                 xor     eax, eax
 .text:0040127D                 jz      short near ptr loc_40127F+1
@@ -370,7 +370,7 @@ loc_40127B:                             ; CODE XREF: .text:00401273↑j
 
 又是一个花指令，这个就比较明显，去花
 
-```asm
+```asm6502
 loc_401287:                             ; CODE XREF: .text:004012AF↓j
 .text:00401287                 xor     eax, eax
 .text:00401289                 mov     al, byte ptr (dword_42169C+3)[esi]
@@ -386,7 +386,7 @@ loc_401287:                             ; CODE XREF: .text:004012AF↓j
 
 又是一个明显的花指令，接着去花，之后就没什么阻碍了
 
-```asm
+```asm6502
 loc_40127B:                             ; CODE XREF: .text:00401273↑j
 .text:0040127B                 xor     eax, eax
 .text:0040127D                 jz      short loc_401280
@@ -524,7 +524,7 @@ loc_40127B:                             ; CODE XREF: .text:00401273↑j
 
 然后调用了一个函数进行了处理，处理之后和已知的字符串进行对比，相同就返回正确，逻辑很简单，用来处理的函数如下
 
-```c++
+```cpp
 char __fastcall sub_401090(char *a1, int a2)
 {
   int v2; // eax

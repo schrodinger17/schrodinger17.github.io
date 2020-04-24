@@ -14,7 +14,7 @@ BJD{S1mple_ReV3r5e_W1th_0D_0r_IDA}
 
 IDA打开，发现一段数据很奇怪，转换成code
 
-```asm
+```asm6502
 mov     cx, 22h ; '"'
 seg001:0005                 lea     bx, aUDuTZWjQGjzZWz ; "]U[du~|t@{z@wj.}.~q@gjz{z@wzqW~/b;"
 seg001:0009

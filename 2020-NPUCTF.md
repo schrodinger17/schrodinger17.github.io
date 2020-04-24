@@ -20,7 +20,7 @@ flag{d0_y0u_know_x86-64_a5m?}
 
 把简单的花指令`patch`掉
 
-```c++
+```cpp
 __int64 __fastcall main(__int64 a1, char **a2, char **a3)
 {
   __int64 *v3; // rbx
@@ -190,7 +190,7 @@ flag{j4r2eXe_I5_@_p0wer7ul_To0l!}
 
 首先从main函数走到了`sub_401E10`，所有的操作都在这里处理
 
-```c++
+```cpp
   length0 = strlen(commandline_input);
   input0[0] = 0;
   memset(&input0[1], 0, 0x3FCu);
@@ -203,7 +203,7 @@ flag{j4r2eXe_I5_@_p0wer7ul_To0l!}
 
 `commandline_input`可以不管它，先是输入了flag然后获取了长度，然后走第一个判断
 
-```c++
+```cpp
       input0[length_input] = 10;
       v48 = 32;
       for ( i = 0; i < length_input; ++i )
@@ -220,7 +220,7 @@ flag{j4r2eXe_I5_@_p0wer7ul_To0l!}
 
 用到的判断是一个永真判断，所以默认执行第一个函数，初始化`target1`为奇数
 
-```c++
+```cpp
 int sub_401870()
 {
   int result; // eax
@@ -237,14 +237,14 @@ int sub_401870()
 
 下面的几个逻辑判断发现也是永真，执行到这一步
 
-```c++
+```cpp
 if ( alwaystrue1(SLODWORD(v46), SHIDWORD(v46)) == 1 )
           deal_with_4321c0();
 ```
 
 初始化了一个`tttt`的数组，然后又执行了一个函数
 
-```c++
+```cpp
 int (*sub_401A10())()
 {
   tttt[0] = pow(2, 2) + 1;
@@ -260,7 +260,7 @@ int (*sub_401A10())()
 
 但是这里的处理显然是假的，后面返回的函数又对这个数组进行了重新的赋值，真正的赋值部分在下面
 
-```c++
+```cpp
 void *sub_4015F0()
 {
   void *retaddr; // [esp+0h] [ebp+0h]
@@ -278,7 +278,7 @@ void *sub_4015F0()
 
 然后又是一个永真的判断
 
-```c++
+```cpp
 		v1 = sqrt(v46);
         v2 = _ftol(v1);
         v3 = pow(5, v2) - 1;
@@ -297,7 +297,7 @@ void *sub_4015F0()
 
 输入进行了几步处理，然后把输入的字符16进制转成字符串存储起来，长度翻倍，最后执行了`sub_401073()`函数，跳到了这个位置
 
-```c++
+```cpp
 int (*sub_4017A0())()
 {
   signed int i; // [esp+50h] [ebp-4h]
@@ -310,7 +310,7 @@ int (*sub_4017A0())()
 
 `return`了一个偏移量，~~发现事情并不单纯~~，应该和上面一样又套了一层
 
-```c++
+```cpp
 void *__usercall sub_401680@<eax>(int a1@<ebp>)
 {
   void *retaddr; // [esp+0h] [ebp+0h]
@@ -338,13 +338,13 @@ void *__usercall sub_401680@<eax>(int a1@<ebp>)
 
 接着进行了一个逆序
 
-```c++
+```cpp
 reverse((int)input_step2, 2 * length_input);// 第四步
 ```
 
 接下来的几个逻辑判断判断一下就不难发现最后走的是这一部分的处理
 
-```c++
+```cpp
         else                                    // 第五步
         {
           for ( i = 0; i < 2 * length_input; ++i )
@@ -364,7 +364,7 @@ reverse((int)input_step2, 2 * length_input);// 第四步
 
 `sub_401019(v16, i)`的内容看一下也很容易出来
 
-```c++
+```cpp
 int __cdecl sub_401CD0(char a1, int a2)
 {
   signed int v2; // ST58_4
@@ -376,7 +376,7 @@ int __cdecl sub_401CD0(char a1, int a2)
 
 简单的两层异或，中间套了一个函数，传的是固定参数，调试很容易出来，不过这个函数也不复杂，可以直接分析出来
 
-```c++
+```cpp
 size_t __cdecl sub_401820(int a1)
 {
   return a1 * strlen(off_42EA34);
@@ -385,7 +385,7 @@ size_t __cdecl sub_401820(int a1)
 
 求得是这一部分的长度
 
-```asm
+```cpp
 .data:0042EA34     ; char *off_42EA34
 .data:0042EA34     off_42EA34      dd offset unk_42C01C    ; DATA XREF: sub_401820+18↑r
 .data:0042EA38     off_42EA38      dd offset sub_401023    ; DATA XREF: sub_401950+7C↑r
@@ -396,7 +396,7 @@ size_t __cdecl sub_401820(int a1)
 
 但第一部分是数据，肯定不是整个的长度，一定有`\0`让`strlen`截断
 
-```c++
+```cpp
 .rdata:0042C01C     unk_42C01C      db  58h ; X             ; DATA XREF: .data:off_42EA34↓o
 .rdata:0042C01D                     db  58h ; X
 .rdata:0042C01E                     db    0
@@ -405,13 +405,13 @@ size_t __cdecl sub_401820(int a1)
 
 发现长度为2，并且在`.rdata`段，程序运行过程中没有修改，检验一下查一查交叉引用发现果然没有，回到原来的位置，`sub_40101E`的作用很简单，就是`*2`，所以返回的值也可以写成
 
-```c++
+```cpp
 return a2 % 4 ^ target1[a2 % 6] ^ a1
 ```
 
 下面再稍微判断一下，永远走的是这个处理
 
-```c++
+```cpp
         if ( v25 >= pow(v40 / 2, 2) )           // 第六步
         {
           for ( i = 0; i < 2 * length_input; ++i )
@@ -427,7 +427,7 @@ return a2 % 4 ^ target1[a2 % 6] ^ a1
 
 然后四位变五位
 
-```c++
+```cpp
         for ( i = 0; i < 2 * length_input; ++i )// 第七步
         {
           memset(&str1, 0, 0x16u);
@@ -439,7 +439,7 @@ return a2 % 4 ^ target1[a2 % 6] ^ a1
 
 几步处理之后继续16进制转字符串
 
-```c++
+```cpp
         length2 = strlen(&str0);
         for ( i = 0; i < length2; ++i )
         {
@@ -454,7 +454,7 @@ return a2 % 4 ^ target1[a2 % 6] ^ a1
 
 最后进行比较
 
-```c++
+```cpp
 if ( !strcmp(
                 &hex,
                 "3D393A37343C39373A343A373D36363A3B3934333539363437373934383736373B38333D3D3D37313C3B3A36353C393437373C38"

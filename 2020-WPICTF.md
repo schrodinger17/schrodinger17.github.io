@@ -23,7 +23,7 @@ Haha! Your precious file flag.gif has been encrypted by my new and improved rans
 
 题目中所给的`flag-gif.EnCiPhErEd`应该就是加密过的文件，解密就可以得到flag，给的流量包暂时不知道作用是什么，干脆先看看程序的实现
 
-```c++
+```cpp
 *(_QWORD *)seed = time(0LL);
   srand(seed[0]);
   fd = socket(2, 1, 0);
@@ -57,7 +57,7 @@ Haha! Your precious file flag.gif has been encrypted by my new and improved rans
 
 下面生成了一个随机数序列
 
-```c++
+```cpp
   puts("targetting flag.gif");
   stream = fopen("flag.gif", "r+");
   fseek(stream, 0LL, 2);
@@ -76,7 +76,7 @@ Haha! Your precious file flag.gif has been encrypted by my new and improved rans
 
 生成了key，下面是加密过程
 
-```c++
+```cpp
 for ( j = 0; ; ++j )
   {
     v14 = fgetc(stream);
@@ -94,7 +94,7 @@ for ( j = 0; ; ++j )
 
 简单异或之后写入文件，所以生成随机数序列之后再异或回来就好了
 
-```c++
+```cpp
 #include <iostream>
 #include <cstdio>
 using namespace std;

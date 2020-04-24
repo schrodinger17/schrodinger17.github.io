@@ -14,7 +14,7 @@ pwn也很久没做了，知识点还停留在刚学的时候，应付一下第�
 
 IDA打开~~(逆向看久了之后发现pwn题目的逻辑真的是简单得要命)~~，漏洞也看得出来，利用的话还是不熟练，需要多练
 
-```c++
+```cpp
 __int64 __fastcall main(__int64 a1, char **a2, char **a3)
 {
   __int64 v3; // rax
@@ -75,7 +75,7 @@ io.interactive()
 
 IDA打开
 
-```c++
+```cpp
 void __fastcall __noreturn main_main(__int64 a1, __int64 a2)
 {
   signed __int64 i; // rcx
@@ -275,7 +275,7 @@ PCTF{ITWASTIMEFORTHOMASTOGO_HEHADSEENEVERYTHING}
 
 来补充一下，IDA可以直接打开pck包，里面有关于人物的设定
 
-```
+```cpp
 '# Global Variables',0Ah
 seg000:0000000000004610                 db 'var g_direction',0Ah
 seg000:0000000000004610                 db 'var g_velocity',0Ah
@@ -288,7 +288,7 @@ seg000:0000000000004610                 db 'var g_god_mode',0Ah
 
 惊奇的发现下面还有一个上帝模式和开启方法
 
-```
+```cpp
  db 9,'if self.g_cheat_stack == ["P", "U", "R", "G", "0", "0"]:',0Ah
 seg000:0000000000004610                 db 9,9,'self.g_god_mode = not self.g_god_mode',0Ah
 seg000:0000000000004610                 db 9,9,'$CollisionShape2D.disabled = not $CollisionShape2D.disabled',0Ah
@@ -302,7 +302,7 @@ seg000:0000000000004610                 db 9,9,'$CollisionShape2D.disabled = not
 
 这题的逻辑很简单
 
-```c++
+```cpp
 __int64 __fastcall main(__int64 a1, char **a2, char **a3)
 {
   signed int v3; // esi
@@ -376,7 +376,7 @@ __int64 __fastcall main(__int64 a1, char **a2, char **a3)
 
 直接会输出flag的那种，但是一运行只输出了三个字符，明显是计算大数乘幂的时候算法时间复杂度太高了(**O(n^2)**)，想要算出flag必须手动优化一下算法，利用平方把时间复杂度优化到**O(logn)**，在大数的时候明显优化的不是一点
 
-```c++
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -453,7 +453,7 @@ pctf{one man's trash is another man's V#x0GFu_Lp%3}
 
 这题就直接看汇编了
 
-```asm
+```asm6502
 .cpu cortex-m0
 .thumb
 .syntax unified
@@ -522,7 +522,7 @@ pctf{tr41ns_d0nt_h4v3_arms}
 
 > 我觉得这题很不错，难度比较适中，还可以加深对于数据在内存中占用位数的理解
 
-```c++
+```cpp
 __int64 __usercall main@<rax>(__int64 a1@<rdi>, char **a2@<rsi>, char **a3@<rdx>, __int64 a4@<rbx>, _QWORD *a5@<r12>)
 {
   signed __int64 v5; // rdx
@@ -570,7 +570,7 @@ __int64 __usercall main@<rax>(__int64 a1@<rdi>, char **a2@<rsi>, char **a3@<rdx>
 
 程序在`sub_1830()`里进行输入，在`sub_1510()`进行了一些处理然后判断
 
-```c++
+```cpp
 __int64 *__fastcall sub_1830(__int64 *a1)
 {
   __int64 *v1; // r12
@@ -738,7 +738,7 @@ LABEL_32:
 
 程序看起来异常复杂，但是经过我的仔细分(tiao)析(shi)，发现只是把输入拷贝到了内存里分配好的空间。
 
-```c++
+```cpp
 __int64 __usercall sub_1510@<rax>(signed __int64 a1@<rdx>, unsigned __int64 a2@<rcx>, __int64 a3@<rbx>, void *a4@<rbp>, __int64 *a5@<rdi>, unsigned __int64 a6@<rsi>, _QWORD *a7@<r12>)
 {
   _QWORD *v7; // rax
@@ -812,7 +812,7 @@ LABEL_5:
 
 这又是一个异常复杂的函数，但实际上有用的内容并不多
 
-```c++
+```cpp
  	a6 = 0LL;
     a1 = 4294967185LL;
     while ( 1 )
@@ -838,7 +838,7 @@ LABEL_5:
 
 接下来是判断函数
 
-```c++
+```cpp
 __int64 __fastcall sub_15A0(__int64 *a1)
 {
   _QWORD *v1; // rbp
@@ -899,7 +899,7 @@ LABEL_10:
 
 各种操作看着吓人，仔细一看，只有一个直接比较
 
-```c++
+```cpp
 if ( *((_BYTE *)v1 + 4 * v2) != *(_BYTE *)(v3 + v2) )
 ```
 
@@ -907,7 +907,7 @@ if ( *((_BYTE *)v1 + 4 * v2) != *(_BYTE *)(v3 + v2) )
 
 然后直接把处理过后的目标数组和之前依据相同算法生成出来的数组逐项异或就可以得到flag
 
-```c++
+```cpp
 #include <iostream>
 #include "ida.h"
 
