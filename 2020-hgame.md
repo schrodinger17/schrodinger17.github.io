@@ -942,7 +942,7 @@ PEiD查看一下，没壳，编写语言是Microsoft Visual C# / Basic .NET，C#
 
 dnSpy打开就和源码几乎没什么区别，这题显然难度不在这，反编译之后找到按键click事件，关键代码就在这里
 
-```c#
+```csp
 private void button1_Click(object sender, EventArgs e)
 		{
 			if (this.status == 1)
