@@ -6,7 +6,7 @@
 
 `Robocup`业余选手，从来没赢过比赛
 
-专业搞崩`linux`
+`linux`爱好者
 
 欢迎访问[我的博客](http://blog.rycbar.club/)
 
