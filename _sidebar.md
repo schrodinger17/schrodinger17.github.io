@@ -1,5 +1,4 @@
 - CTF-wp
-  - [2020-36DCTF](2020-36DCTF.md)
   - [2020-HouseplantCTF](2020-HouseplantCTF.md)
   - [安恒月赛-四月春季战](安恒月赛-四月春季战.md)
   - [2020-NPUCTF](2020-NPUCTF.md)
@@ -9,4 +8,5 @@
   - [2020-高校战“疫”](2020-高校战疫.md)
   - [2020-b01lersCTF](2020-b01lersCTF.md)
   - [2020-hgame](2020-hgame.md)
+  - [2020-36DCTF](2020-36DCTF.md)
 
