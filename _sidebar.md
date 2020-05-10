@@ -1,4 +1,5 @@
 - CTF-wp
+  - [2020-网鼎杯](2020-网鼎杯.md)
   - [2020-HouseplantCTF](2020-HouseplantCTF.md)
   - [安恒月赛-四月春季战](安恒月赛-四月春季战.md)
   - [2020-NPUCTF](2020-NPUCTF.md)
