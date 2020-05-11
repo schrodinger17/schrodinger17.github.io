@@ -8,5 +8,7 @@
 
 `linux`爱好者
 
+`Rust`教徒
+
 欢迎访问[我的博客](http://blog.rycbar.club/)
 
