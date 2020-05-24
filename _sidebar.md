@@ -1,4 +1,5 @@
 - CTF-wp
+  - [2020-GKCTF](2020-GKCTF.md)
   - [安恒月赛xBJDCTF3th](安恒月赛xBJDCTF3th.md)
   - [2020-SharkCTF](2020-SharkCTF.md)
   - [2020-网鼎杯](2020-网鼎杯.md)
