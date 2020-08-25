@@ -1,4 +1,6 @@
 - CTF-wp
+  - [2020-强网杯](2020-qwb.md)
+  - [2020信息安全竞赛创新实践赛](2020-ciscn.md)
   - [2020-DASCTF-July](2020-DASCTF-July.md)
   - [2020-GKCTF](2020-GKCTF.md)
   - [安恒月赛xBJDCTF3th](安恒月赛xBJDCTF3th.md)
